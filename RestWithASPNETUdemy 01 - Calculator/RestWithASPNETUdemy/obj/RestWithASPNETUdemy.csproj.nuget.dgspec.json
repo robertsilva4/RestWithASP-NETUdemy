@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj": {}
+    "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj": {
+    "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
+        "projectUniqueName": "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
         "projectName": "RestWithASPNETUdemy",
-        "projectPath": "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
+        "projectPath": "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
         "packagesPath": "C:\\Users\\Robert\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy\\RestWithASPNETUdemy\\obj\\",
+        "outputPath": "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Robert\\AppData\\Roaming\\NuGet\\NuGet.Config",
