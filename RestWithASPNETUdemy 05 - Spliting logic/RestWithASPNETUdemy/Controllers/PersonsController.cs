@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestWithASPNETUdemy.Model;
-using RestWithASPNETUdemy.Services;
+using RestWithASPNETUdemy.Business;
 
 namespace RestWithASPNETUdemy.Controllers
 {
@@ -15,13 +15,13 @@ namespace RestWithASPNETUdemy.Controllers
     public class PersonsController : ControllerBase
     {
         //declaraçã do servidor usado
-        private IPersonService _personService;
+        private IPersonBusiness _personBusiness;
 
-        //injeção de uma instância IPersonServices ao criar
+        //injeção de uma instância IPersonBusiness ao criar
         //uma instancia de persons controllers
-        public PersonsController(IPersonService personService)
+        public PersonsController(IPersonBusiness personBusiness)
         {
-            _personService = personService;
+            _personBusiness = personBusiness;
         }
 
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/
@@ -30,7 +30,7 @@ namespace RestWithASPNETUdemy.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personBusiness.FindAll());
         }
 
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/{id}
@@ -38,9 +38,9 @@ namespace RestWithASPNETUdemy.Controllers
         //Get com parâmetros para o FindById --> Busca Por ID
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult Get(long id)
         {
-            var person = _personService.FindById(id);
+            var person = _personBusiness.FindById(id);
             if (person == null) return NotFound();
             return Ok(person);
         }
@@ -52,17 +52,19 @@ namespace RestWithASPNETUdemy.Controllers
         public IActionResult Post([FromBody] Person person)
         {
             if (person == null) return BadRequest();
-            return new ObjectResult(_personService.Create(person));
+            return new ObjectResult(_personBusiness.Create(person));
         }
 
         //Mapeia as requisições PUT para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         // PUT api/values/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Put([FromBody] Person person)
         {
             if (person == null) return BadRequest();
-            return new ObjectResult(_personService.Update(person));
+            var updatedPerson = _personBusiness.Update(person);
+            if (updatedPerson == null) return BadRequest();
+            return new ObjectResult(updatedPerson);
         }
 
         //Mapeia as requisições DELETE para http://localhost:{porta}/api/person/{id}
@@ -71,7 +73,7 @@ namespace RestWithASPNETUdemy.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _personService.Delete(id);
+            _personBusiness.Delete(id);
             return NoContent();
         }
     }
