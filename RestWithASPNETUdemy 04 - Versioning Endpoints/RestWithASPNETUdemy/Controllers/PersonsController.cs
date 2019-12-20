@@ -9,8 +9,9 @@ namespace RestWithASPNETUdemy.Controllers
     pegando a primeira parte do nome da classe em lower case [Person]Controller
     e expõe como endpoint REST
     */
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
     [ApiController]
+    [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonsController : ControllerBase
     {
         //declaraçã do servidor usado
