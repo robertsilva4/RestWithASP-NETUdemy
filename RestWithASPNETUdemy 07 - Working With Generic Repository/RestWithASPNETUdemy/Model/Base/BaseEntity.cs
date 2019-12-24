@@ -9,7 +9,7 @@ namespace RestWithASPNETUdemy.Model.Base
         //contrato entre atributos
         //e a estrutura da tabela
         [Column("id")]
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
     }
 }
