@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RestWithASPNETUdemy.Model
+﻿namespace RestWithASPNETUdemy.Data.VO
 {
-    public class Person
+    public class PersonVO
     {
         public long? Id { get; set; }
         public string firstName { get; set; }

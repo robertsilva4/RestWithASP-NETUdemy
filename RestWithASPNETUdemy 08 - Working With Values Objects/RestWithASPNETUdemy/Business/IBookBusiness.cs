@@ -9,6 +9,6 @@ namespace RestWithASPNETUdemy.Business
         Book FindById(long id);
         List<Book>FindAll();
         Book Update(Book book);
-        Book Delete(long id);
+        void Delete(long id);
     }
 }
