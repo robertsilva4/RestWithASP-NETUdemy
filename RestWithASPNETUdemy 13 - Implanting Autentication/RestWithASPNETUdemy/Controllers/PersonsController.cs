@@ -3,20 +3,22 @@ using RestWithASPNETUdemy.Business;
 using RestWithASPNETUdemy.Data.VO;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
+using Tapioca.HATEOAS;
 
 namespace RestWithASPNETUdemy.Controllers
 {
+    
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/[controller]/v{version:apiVersion}")]
-    public class BooksController : ControllerBase
+    public class PersonsController : ControllerBase
     {
-        
-        private IBookBusiness _bookBusiness;
 
-        public BooksController(IBookBusiness bookBusiness)
+        private IPersonBusiness _personBusiness;
+
+        public PersonsController(IPersonBusiness personBusiness)
         {
-            _bookBusiness = bookBusiness;
+            _personBusiness = personBusiness;
         }
 
         [HttpGet]
@@ -24,9 +26,10 @@ namespace RestWithASPNETUdemy.Controllers
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
-            return Ok(_bookBusiness.FindAll());
+            return Ok(_personBusiness.FindAll());
         }
 
         [HttpGet("{id}")]
@@ -34,42 +37,46 @@ namespace RestWithASPNETUdemy.Controllers
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
-            var books = _bookBusiness.FindById(id);
-            if (books == null) return NotFound();
-            return Ok(books);
+            var person = _personBusiness.FindById(id);
+            if (person == null) return NotFound();
+            return Ok(person);
         }
 
         [HttpPost]
         [SwaggerResponse((201), Type = typeof(PersonVO))]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
-        public IActionResult Post([FromBody] BookVO book)
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult Post([FromBody] PersonVO person)
         {
-            if (book == null) return BadRequest();
-            return new ObjectResult(_bookBusiness.Create(book));
+            if (person == null) return BadRequest();
+            return new ObjectResult(_personBusiness.Create(person));
         }
 
         [HttpPut]
         [SwaggerResponse((202), Type = typeof(PersonVO))]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
-        public IActionResult Put([FromBody] BookVO book)
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult Put([FromBody] PersonVO person)
         {
-            if (book == null) return BadRequest();
-            var updatedBooks = _bookBusiness.Update(book);
-            if (updatedBooks == null) return BadRequest();
-            return new ObjectResult(updatedBooks);
+            if (person == null) return BadRequest();
+            var updatedPerson = _personBusiness.Update(person);
+            if (updatedPerson == null) return BadRequest();
+            return new ObjectResult(updatedPerson);
         }
 
         [HttpDelete("{id}")]
         [SwaggerResponse(204)]
         [SwaggerResponse(400)]
         [SwaggerResponse(401)]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
-            _bookBusiness.Delete(id);
+            _personBusiness.Delete(id);
             return NoContent();
         }
     }

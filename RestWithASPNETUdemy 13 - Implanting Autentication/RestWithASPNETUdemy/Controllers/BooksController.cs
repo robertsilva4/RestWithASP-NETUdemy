@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestWithASPNETUdemy.Business;
 using RestWithASPNETUdemy.Data.VO;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Collections.Generic;
 
 namespace RestWithASPNETUdemy.Controllers
 {
@@ -11,29 +9,30 @@ namespace RestWithASPNETUdemy.Controllers
     [Route("api/[controller]/v{version:apiVersion}")]
     public class BooksController : ControllerBase
     {
-        
+        //declaraçã do servidor usado
         private IBookBusiness _bookBusiness;
 
+        //injeção de uma instância IPersonBusiness ao criar
+        //uma instancia de persons controllers
         public BooksController(IBookBusiness bookBusiness)
         {
             _bookBusiness = bookBusiness;
         }
 
+        //Mapeia as requisições GET para http://localhost:{porta}/api/person/
+        //Get sem parâmetros para o FindAll --> Busca Todos
+        // GET api/values
         [HttpGet]
-        [SwaggerResponse((200), Type = typeof(List<PersonVO>))]
-        [SwaggerResponse(204)]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
         public IActionResult Get()
         {
             return Ok(_bookBusiness.FindAll());
         }
 
+        //Mapeia as requisições GET para http://localhost:{porta}/api/person/{id}
+        //recebendo um ID como no Path da requisição
+        //Get com parâmetros para o FindById --> Busca Por ID
+        // GET api/values/5
         [HttpGet("{id}")]
-        [SwaggerResponse((200), Type = typeof(PersonVO))]
-        [SwaggerResponse(204)]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
         public IActionResult Get(long id)
         {
             var books = _bookBusiness.FindById(id);
@@ -41,20 +40,20 @@ namespace RestWithASPNETUdemy.Controllers
             return Ok(books);
         }
 
+        //Mapeia as requisições POST para http://localhost:{porta}/api/person/
+        //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
+        // POST api/values
         [HttpPost]
-        [SwaggerResponse((201), Type = typeof(PersonVO))]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
         public IActionResult Post([FromBody] BookVO book)
         {
             if (book == null) return BadRequest();
             return new ObjectResult(_bookBusiness.Create(book));
         }
 
+        //Mapeia as requisições PUT para http://localhost:{porta}/api/person/
+        //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
+        // PUT api/values/5
         [HttpPut]
-        [SwaggerResponse((202), Type = typeof(PersonVO))]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
         public IActionResult Put([FromBody] BookVO book)
         {
             if (book == null) return BadRequest();
@@ -63,10 +62,10 @@ namespace RestWithASPNETUdemy.Controllers
             return new ObjectResult(updatedBooks);
         }
 
+        //Mapeia as requisições DELETE para http://localhost:{porta}/api/person/{id}
+        //recebendo um ID como no Path da requisição
+        // DELETE api/values/5
         [HttpDelete("{id}")]
-        [SwaggerResponse(204)]
-        [SwaggerResponse(400)]
-        [SwaggerResponse(401)]
         public IActionResult Delete(int id)
         {
             _bookBusiness.Delete(id);
