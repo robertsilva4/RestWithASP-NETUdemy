@@ -4,25 +4,18 @@ using RestWithASPNETUdemy.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestWithASPNETUdemy.Repository.Generic
 {
-    //A implementação do repositório generico
-    //recebe qulquer tipo T que implementa IRepository de mesmo tipo
-    //Desde que T extenda BaseEntity
     public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private MySQLContext _context;
+        private readonly MySQLContext _context;
         private DbSet<T> dataset;
         public GenericRepository(MySQLContext context)
         {
             _context = context;
             dataset = _context.Set<T>();
         }
-
-        //Método responsável por gerar um novo item
-        //e persistir nos dados
         public T Create(T item)
         {
             try
@@ -55,29 +48,21 @@ namespace RestWithASPNETUdemy.Repository.Generic
             }
         }
 
-        public bool Exist(long? id)
-        {
-            return dataset.Any(i => i.Id.Equals(id));
-        }
-
-        //Método responsável por retornar todas os itens 
         public List<T> FindAll()
         {
             return dataset.ToList();
         }
 
-        //Método responsáve por retornar um item
         public T FindById(long id)
         {
             return dataset.SingleOrDefault(i => i.Id.Equals(id));
         }
 
-        //Método de atualizar as itens existentes
         public T Update(T item)
         {
             if (!Exist(item.Id)) return null;
 
-            var result = dataset.SingleOrDefault(i => i.Id.Equals(item.Id));
+            var result = dataset.SingleOrDefault(b => b.Id.Equals(item.Id));
             try
             {
                 _context.Entry(result).CurrentValues.SetValues(item);
@@ -89,6 +74,11 @@ namespace RestWithASPNETUdemy.Repository.Generic
                 throw ex;
             }
             return item;
+        }
+
+        public bool Exist(long? id)
+        {
+            return dataset.Any(i => i.Id.Equals(id));
         }
     }
 }

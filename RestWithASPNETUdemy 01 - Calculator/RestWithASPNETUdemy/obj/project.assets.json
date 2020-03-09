@@ -11951,20 +11951,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Robert\\.nuget\\packages\\": {}
+    "C:\\Users\\rober\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
+      "projectUniqueName": "C:\\Users\\rober\\source\\repos\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
       "projectName": "RestWithASPNETUdemy",
-      "projectPath": "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
-      "packagesPath": "C:\\Users\\Robert\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Robert\\source\\repos\\ProjetoAulas\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\obj\\",
+      "projectPath": "C:\\Users\\rober\\source\\repos\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\RestWithASPNETUdemy.csproj",
+      "packagesPath": "C:\\Users\\rober\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rober\\source\\repos\\RestWithASP-NETUdemy\\RestWithASPNETUdemy 01 - Calculator\\RestWithASPNETUdemy\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Robert\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\rober\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

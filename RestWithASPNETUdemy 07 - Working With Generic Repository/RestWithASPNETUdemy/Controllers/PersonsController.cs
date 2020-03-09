@@ -12,14 +12,14 @@ namespace RestWithASPNETUdemy.Controllers
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/[controller]/v{version:apiVersion}")]
-    public class PersonsController  : ControllerBase
+    public class PersonsController : ControllerBase
     {
         //declaraçã do servidor usado
         private IPersonBusiness _personBusiness;
 
         //injeção de uma instância IPersonBusiness ao criar
         //uma instancia de persons controllers
-        public PersonsController (IPersonBusiness personBusiness)
+        public PersonsController(IPersonBusiness personBusiness)
         {
             _personBusiness = personBusiness;
         }

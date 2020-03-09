@@ -1,15 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestWithASPNETUdemy.Business;
-using RestWithASPNETUdemy.Model;
+using RestWithASPNETUdemy.Data.VO;
 
 namespace RestWithASPNETUdemy.Controllers
 {
-    /* Mapeia as requisições de http://localhost:{porta}/api/person/
-    Por padrão o ASP.NET Core mapeia todas as classes que extendem Controller
-    pegando a primeira parte do nome da classe em lower case [Person]Controller
-    e expõe como endpoint REST
-    */
-
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/[controller]/v{version:apiVersion}")]
@@ -41,16 +35,16 @@ namespace RestWithASPNETUdemy.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            var book = _bookBusiness.FindById(id);
-            if (book == null) return NotFound();
-            return Ok(book);
+            var books = _bookBusiness.FindById(id);
+            if (books == null) return NotFound();
+            return Ok(books);
         }
 
         //Mapeia as requisições POST para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Book book)
+        public IActionResult Post([FromBody] BookVO book)
         {
             if (book == null) return BadRequest();
             return new ObjectResult(_bookBusiness.Create(book));
@@ -60,12 +54,12 @@ namespace RestWithASPNETUdemy.Controllers
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         // PUT api/values/5
         [HttpPut]
-        public IActionResult Put([FromBody] Book book)
+        public IActionResult Put([FromBody] BookVO book)
         {
             if (book == null) return BadRequest();
-            var updatedBook = _bookBusiness.Update(book);
-            if (updatedBook == null) return BadRequest();
-            return new ObjectResult(updatedBook);
+            var updatedBooks = _bookBusiness.Update(book);
+            if (updatedBooks == null) return BadRequest();
+            return new ObjectResult(updatedBooks);
         }
 
         //Mapeia as requisições DELETE para http://localhost:{porta}/api/person/{id}

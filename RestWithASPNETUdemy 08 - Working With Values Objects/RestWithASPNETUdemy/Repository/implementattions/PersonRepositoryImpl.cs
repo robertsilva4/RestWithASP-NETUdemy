@@ -1,5 +1,4 @@
-﻿using RestWithASPNETUdemy.Business;
-using RestWithASPNETUdemy.Model;
+﻿using RestWithASPNETUdemy.Model;
 using RestWithASPNETUdemy.Model.Context;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ namespace RestWithASPNETUdemy.Repository.implementattions
 {
     public class PersonRepositoryImpl : IPersonRepository
     {
-        private MySQLContext _context;
+        private readonly MySQLContext _context;
         public PersonRepositoryImpl(MySQLContext context)
         {
             _context = context;

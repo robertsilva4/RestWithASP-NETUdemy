@@ -1,8 +1,5 @@
 ﻿using RestWithASPNETUdemy.Model.Base;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestWithASPNETUdemy.Repository.Generic
 {
@@ -13,7 +10,7 @@ namespace RestWithASPNETUdemy.Repository.Generic
         List<T> FindAll();
         T Update(T item);
         void Delete(long id);
-        bool Exist(long? id);
 
+        bool Exist(long? id);
     }
 }

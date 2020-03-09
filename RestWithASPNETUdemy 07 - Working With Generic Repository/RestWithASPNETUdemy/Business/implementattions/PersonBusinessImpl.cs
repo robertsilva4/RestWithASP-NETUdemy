@@ -1,5 +1,4 @@
 ﻿using RestWithASPNETUdemy.Model;
-using RestWithASPNETUdemy.Repository;
 using RestWithASPNETUdemy.Repository.Generic;
 using System.Collections.Generic;
 

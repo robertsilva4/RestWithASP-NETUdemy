@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using RestWithASPNETUdemy.Business;
+using RestWithASPNETUdemy.Data.VO;
 
 namespace RestWithASPNETUdemy.Controllers
 {
@@ -11,65 +9,62 @@ namespace RestWithASPNETUdemy.Controllers
     pegando a primeira parte do nome da classe em lower case [Person]Controller
     e expõe como endpoint REST
     */
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[controller]")]
-    public class BooksController
+    [Route("api/[controller]/v{version:apiVersion}")]
+    public class PersonsController : ControllerBase
     {
         //declaraçã do servidor usado
-        //private IBookBusiness _bookBusiness;
+        private IPersonBusiness _personBusiness;
 
         //injeção de uma instância IPersonBusiness ao criar
         //uma instancia de persons controllers
-        //public PersonsController(IPersonBusiness personBusiness)
-        //{
-        //    _bookBusiness = bookBusiness;
-        //}
+        public PersonsController(IPersonBusiness personBusiness)
+        {
+            _personBusiness = personBusiness;
+        }
 
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/
         //Get sem parâmetros para o FindAll --> Busca Todos
         // GET api/values
-        [HttpGet("v1")]
+        [HttpGet]
         public IActionResult Get()
         {
-            //return Ok(_bookBusiness.FindAll());
-            return Ok();
+            return Ok(_personBusiness.FindAll());
         }
 
         //Mapeia as requisições GET para http://localhost:{porta}/api/person/{id}
         //recebendo um ID como no Path da requisição
         //Get com parâmetros para o FindById --> Busca Por ID
         // GET api/values/5
-        [HttpGet("v1{id}")]
+        [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            /*var book = _bookBusiness.FindById(id);
-            if (book == null) return NotFound();
-            return Ok(book);*/
-            return Ok();
+            var person = _personBusiness.FindById(id);
+            if (person == null) return NotFound();
+            return Ok(person);
         }
 
         //Mapeia as requisições POST para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Person person)
+        public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
             return new ObjectResult(_personBusiness.Create(person));
-            return Ok();
         }
 
         //Mapeia as requisições PUT para http://localhost:{porta}/api/person/
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         // PUT api/values/5
         [HttpPut]
-        public IActionResult Put([FromBody] Person person)
+        public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
             var updatedPerson = _personBusiness.Update(person);
             if (updatedPerson == null) return BadRequest();
             return new ObjectResult(updatedPerson);
-            return Ok();
         }
 
         //Mapeia as requisições DELETE para http://localhost:{porta}/api/person/{id}
@@ -80,7 +75,6 @@ namespace RestWithASPNETUdemy.Controllers
         {
             _personBusiness.Delete(id);
             return NoContent();
-            return Ok();
         }
     }
 }

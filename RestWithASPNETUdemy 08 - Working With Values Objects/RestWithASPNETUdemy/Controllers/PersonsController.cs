@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestWithASPNETUdemy.Model;
 using RestWithASPNETUdemy.Business;
+using RestWithASPNETUdemy.Data.VO;
 
 namespace RestWithASPNETUdemy.Controllers
 {
@@ -12,14 +12,14 @@ namespace RestWithASPNETUdemy.Controllers
     [ApiVersion("1.0")]
     [ApiController]
     [Route("api/[controller]/v{version:apiVersion}")]
-    public class PersonsController  : ControllerBase
+    public class PersonsController : ControllerBase
     {
         //declaraçã do servidor usado
         private IPersonBusiness _personBusiness;
 
         //injeção de uma instância IPersonBusiness ao criar
         //uma instancia de persons controllers
-        public PersonsController (IPersonBusiness personBusiness)
+        public PersonsController(IPersonBusiness personBusiness)
         {
             _personBusiness = personBusiness;
         }
@@ -49,7 +49,7 @@ namespace RestWithASPNETUdemy.Controllers
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Person person)
+        public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
             return new ObjectResult(_personBusiness.Create(person));
@@ -59,7 +59,7 @@ namespace RestWithASPNETUdemy.Controllers
         //O [FromBody] consome o Objeto JSON enviado no corpo da requisição
         // PUT api/values/5
         [HttpPut]
-        public IActionResult Put([FromBody] Person person)
+        public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
             var updatedPerson = _personBusiness.Update(person);
