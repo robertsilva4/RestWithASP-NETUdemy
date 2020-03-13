@@ -11,7 +11,25 @@ namespace RestWithASPNETUdemy.Repository.implementattions
         public PersonRepositoryImpl(MySQLContext context) : base (context) {}
         public List<Person> FindByName(string firstName, string lastName)
         {
-            return _context.Persons.Where(p => p.firstName.Equals(firstName) && p.lastName.Equals(lastName)).ToList();
+            if(!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
+            {
+                return _context.Persons.Where(p => p.firstName.Contains(firstName) && p.lastName.Contains(lastName)).ToList();
+            }
+
+            else if (string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
+            {
+                return _context.Persons.Where(p => p.lastName.Contains(lastName)).ToList();
+            }
+
+            else if (!string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName))
+            {
+                return _context.Persons.Where(p => p.firstName.Contains(firstName)).ToList();
+            }
+
+            else
+            {
+                return _context.Persons.ToList();
+            }
         }
     }
 }

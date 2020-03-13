@@ -43,7 +43,7 @@ namespace RestWithASPNETUdemy.Controllers
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult GetByName([FromQuery] string firstName, [FromQuery] string lastName)
         {
-            return Ok(_personBusiness.FindAll());
+            return Ok(_personBusiness.FindByName(firstName, lastName));
         }
 
 
