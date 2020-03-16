@@ -1,0 +1,8 @@
+select * from Person p where 1=1 and p.name like '%LEANDRO' order by asc limit 10 offset 1
+
+name
+sortDirection
+pageSize
+page
+
+{{host}}:{{port}}/api/persons/v1.0/find-with-paged-search/{{sortDirection}}/{{pageSize}}/{{page}}/?name=Leandro
