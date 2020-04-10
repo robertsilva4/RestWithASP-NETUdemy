@@ -13,22 +13,22 @@ namespace RestWithASPNETUdemy.Repository.implementattions
         {
             if(!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
             {
-                return _context.persons.Where(p => p.firstName.Contains(firstName) && p.lastName.Contains(lastName)).ToList();
+                return _context.Persons.Where(p => p.firstName.Contains(firstName) && p.lastName.Contains(lastName)).ToList();
             }
 
             else if (string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
             {
-                return _context.persons.Where(p => p.lastName.Contains(lastName)).ToList();
+                return _context.Persons.Where(p => p.lastName.Contains(lastName)).ToList();
             }
 
             else if (!string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName))
             {
-                return _context.persons.Where(p => p.firstName.Contains(firstName)).ToList();
+                return _context.Persons.Where(p => p.firstName.Contains(firstName)).ToList();
             }
 
             else
             {
-                return _context.persons.ToList();
+                return _context.Persons.ToList();
             }
         }
     }

@@ -4,6 +4,6 @@ FROM mysql:8.0.19
 #WORKDIR /app
 EXPOSE 3306
 #COPY DBBackup/backup.sql /docker-entrypoint-initdb.d/backup.sql
-COPY ./RestWithASPNETUdemy/db/migrations/ /home/database/
-COPY ./RestWithASPNETUdemy/db/dataset/ /home/database/
-COPY ./RestWithASPNETUdemy/ci/init_database.sh /docker-entrypoint-initdb.d/init_database.sh
+COPY ["./RestWithASPNETUdemy/db/migrations/","/home/database/"]
+COPY ["./RestWithASPNETUdemy/db/dataset/","/home/database/"]
+COPY ["./RestWithASPNETUdemy/ci/init_database.sh","/docker-entrypoint-initdb.d/init_database.sh"]
